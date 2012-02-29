@@ -23,9 +23,12 @@ function connect_error() {
 		}
 		echo "<p>" . lang('%s version: %s through PHP extension %s', $drivers[DRIVER], "<b>$connection->server_info</b>", "<b>$connection->extension</b>") . "\n";
 		echo "<p>" . lang('Logged as: %s', "<b>" . h(logged_user()) . "</b>") . "\n";
-		if ($_GET["refresh"]) {
-			set_session("dbs", null);
-		}
+		
+		
+		// TODO: this needs probably a better fix
+		// We want always FRESH data about databases
+		set_session("dbs", null);
+		
 		$databases = $adminer->databases();
 		if ($databases) {
 			$scheme = support("scheme");
@@ -45,7 +48,7 @@ function connect_error() {
 			echo "<script type='text/javascript'>tableCheck();</script>\n";
 			echo "<p><input type='submit' name='drop' value='" . lang('Drop') . "'" . confirm("formChecked(this, /db/)", 1) . ">\n"; // 1 - eventStop
 			echo "<input type='hidden' name='token' value='$token'>\n";
-			echo "<a href='" . h(ME) . "refresh=1' onclick='eventStop(event);'>" . lang('Refresh') . "</a>\n";
+		//	echo "<a href='" . h(ME) . "refresh=1' onclick='eventStop(event);'>" . lang('Refresh') . "</a>\n";
 			echo "</form>\n";
 		}
 	}
