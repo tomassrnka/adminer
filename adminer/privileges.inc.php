@@ -27,7 +27,6 @@ echo ($grant ? "" : "<input type='hidden' name='grant' value=''>\n");
 echo "<table cellspacing='0'>\n";
 echo "<thead><tr><th>" . lang('Username') . "<th>" . lang('Server') . "<th>&nbsp;</thead>\n";
 while ($row = $result->fetch_assoc()) {
-//	echo '<tr' . odd() . '><td>' . h($row["User"]) . "<td>" . h($row["Host"]) . '<td><a href="' . h(ME . 'user=' . urlencode($row["User"]) . '&host=' . urlencode($row["Host"])) . '">' . lang('Edit') . "</a>\n";
 	echo '<tr' . odd() . '><td><input type="checkbox" name="users[' . bracket_escape($row["User"]) . ']" value="' . $row["Host"] . '"><td><a href="' . h(ME . 'user=' . urlencode($row["User"]) . '&host=' . urlencode($row["Host"])) . '">' . h($row["User"]) . '</a><td>' . h($row["Host"]) . "\n";
 }
 if (!$grant || DB != "") {
